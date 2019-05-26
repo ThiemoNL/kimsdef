@@ -3,8 +3,9 @@ require_once 'core/init.php';
 
 
 //$user = DB::getInstance()->get('users', ['username', '=', 'alex']);
-$userInsert = DB::getInstance()->update('users', 1, [
-    'password' => 'newpassword',
+$userInsert = DB::getInstance()->insert('users', [
+    'username' => 'test',
+    'password' => 'newwpassword',
     'salt' => 'mewsalt'
     ]);
 
