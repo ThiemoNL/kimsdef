@@ -3,10 +3,15 @@ require_once 'core/init.php';
 
 
 //$user = DB::getInstance()->get('users', ['username', '=', 'alex']);
-$user = DB::getInstance()->insert('table', [
-    'username' => 'test',
-    'password' => 'password',
-    'salt' => 'salt'
-]);
+$userInsert = DB::getInstance()->update('users', 1, [
+    'password' => 'newpassword',
+    'salt' => 'mewsalt'
+    ]);
+
+if(!$userInsert) {
+    echo "niet gelukt";} else{
+
+    echo "het is gelukt";
+}
 
 
