@@ -37,7 +37,8 @@ require_once 'core/init.php';
         ]);
 
         if ($validation->passed()) {
-            echo 'Passed';
+            Session::flash('succes', 'You registered successfully!');
+            header('Location: index.php');
         } else {
             print_r($validation->errors());
         }
