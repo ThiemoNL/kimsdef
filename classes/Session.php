@@ -1,7 +1,19 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Tim_O
- * Date: 17-5-2019
- * Time: 08:49
- */
+class Session {
+    public static function exists($name){
+        return (isset($_SESSION[$name])) ? true : false;
+    }
+    public static function put($name, $value){
+        return $_SESSION[$name] = $value;
+    }
+
+    public static function get($name){
+        return $_SESSION[$name];
+    }
+
+    public static function delete($name){
+        if(self::exists($name)){
+            unset($_SESSION[$name]);
+        }
+    }
+}

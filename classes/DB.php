@@ -24,7 +24,8 @@ class DB {
         return self::$_instance;
     }
 
-    public function  query($sql, $params = []) {
+
+    public function  query($sql, $params = [])  {
         $this->_error = False;
         if($this->_query = $this->_pdo->prepare($sql)){
             $x = 1;
