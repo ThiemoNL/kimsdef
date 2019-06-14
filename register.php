@@ -52,13 +52,13 @@ require_once 'core/init.php';
                 ]);
 
                 Session::flash('home', 'You have been registered and can now log in!');
-                header('Location: index.php');
+                Redirect::to(404);
             } catch (Exception $e){
                 die($e->getMessage());
             }
         } else {
             foreach ($validation->errors() as $error) {
-                echo $error, '<br>';
+                echo $error . '<br>';
             }
         }
         }

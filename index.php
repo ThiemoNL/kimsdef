@@ -19,3 +19,19 @@ if(Session::exists('home')) {
 //}
 
 
+echo '<br>';
+$user = new User();
+
+if($user->isLoggedIn()){
+    ?>
+
+    <p>Hello <a href="#"><?= htmlentities($user->data()->username) ?></a>!</p>
+
+    <ul>
+        <li><a href="logout.php">Log Out</a></li>
+    </ul>
+
+<?php
+} else {
+    Echo '<p>You need to <a href="login.php">Log in</a> in or <a href="register.php">register</a></p>';
+}

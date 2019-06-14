@@ -10,8 +10,6 @@ class Hash {
         return random_bytes($length);
     }
 
-    public static function unique(){
-        return self::make(uniqid());
-    }
+
 
 }

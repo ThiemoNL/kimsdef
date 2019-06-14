@@ -12,7 +12,7 @@ class Validate {
     public function check($source, $items = []){
         foreach($items as $item => $rules) {
             foreach ($rules as $rule => $rule_value){
-                echo "{$item} {$rule} must be {$rule_value}<br>";
+//                echo "{$item} {$rule} must be {$rule_value}<br>";
                 $value = trim($source[$item]);
                 $item = htmlentities($item);
 
