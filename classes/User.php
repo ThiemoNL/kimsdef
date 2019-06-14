@@ -1,7 +1,14 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Tim_O
- * Date: 17-5-2019
- * Time: 08:50
- */
+class User {
+    private $_db;
+
+    public function __construct($user = null){
+       $this->_db = DB::getInstance();
+    }
+
+    public  function create($fields = []) {
+        if(!$this->_db->insert('users', $fields)) {
+            throw new Exception('there was a problem creating an account');
+        }
+    }
+}

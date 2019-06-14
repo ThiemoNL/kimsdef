@@ -1,8 +1,8 @@
 <?php
 require_once 'core/init.php';
 
-if(Session::exists('succes')) {
-    echo Session::flash('succes');
+if(Session::exists('home')) {
+    echo '<p>' . Session::flash('home') . '</p>';
 }
 
 //$user = DB::getInstance()->get('users', ['username', '=', 'alex']);

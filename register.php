@@ -37,10 +37,29 @@ require_once 'core/init.php';
         ]);
 
         if ($validation->passed()) {
-            Session::flash('succes', 'You registered successfully!');
-            header('Location: index.php');
+            $user = new User();
+
+
+            try {
+
+                $user->create([
+                    'username' => Input::get('username'),
+                    'password' => Hash::make(Input::get('password')),
+                    'name' => Input::get('name'),
+                    'joined' => date('Y-m-d H:i:s'),
+                    'group' => 1,
+                    'email' => Input::get('email')
+                ]);
+
+                Session::flash('home', 'You have been registered and can now log in!');
+                header('Location: index.php');
+            } catch (Exception $e){
+                die($e->getMessage());
+            }
         } else {
-            print_r($validation->errors());
+            foreach ($validation->errors() as $error) {
+                echo $error, '<br>';
+            }
         }
         }
     }

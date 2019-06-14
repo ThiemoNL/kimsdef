@@ -1,7 +1,17 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Tim_O
- * Date: 17-5-2019
- * Time: 08:48
- */
+class Hash {
+
+
+    public static function make($string){
+        return password_hash($string, PASSWORD_DEFAULT);
+    }
+
+    public static function salt($length){
+        return random_bytes($length);
+    }
+
+    public static function unique(){
+        return self::make(uniqid());
+    }
+
+}
