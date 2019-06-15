@@ -52,7 +52,7 @@ require_once 'core/init.php';
                 ]);
 
                 Session::flash('home', 'You have been registered and can now log in!');
-                Redirect::to(404);
+                Redirect::to('index.php');
             } catch (Exception $e){
                 die($e->getMessage());
             }
@@ -69,7 +69,7 @@ require_once 'core/init.php';
 <form action="" method="post">
     <div class="field">
         <label for="username">Username</label>
-        <input type="text" name="username" id="username" value="<?= htmlspecialchars(Input::get('username')) ?>" autocomplete="off">
+        <input type="text" name="username" id="username" value="<?= escape(Input::get('username')) ?>" autocomplete="off">
     </div>
 
     <div class="field">
@@ -84,12 +84,12 @@ require_once 'core/init.php';
 
     <div class="field">
         <label for="name">Enter your name</label>
-        <input type="text" name="name" id="name" value="<?= htmlspecialchars(Input::get('name')) ?>">
+        <input type="text" name="name" id="name" value="<?= escape(Input::get('name')) ?>">
     </div>
 
     <div class="field">
         <label for="email">Enter your email</label>
-        <input type="email" name="email" id="email" value="<?= htmlspecialchars(Input::get('email'))?>">
+        <input type="email" name="email" id="email" value="<?= escape(Input::get('email'))?>">
     </div>
 
     <input type="hidden" name="token" value="<?php echo Token::generate() ?>">

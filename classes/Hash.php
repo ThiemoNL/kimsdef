@@ -10,6 +10,9 @@ class Hash {
         return random_bytes($length);
     }
 
+    public static function unique($salt = ''){
+        return hash('sha256', uniqid());
+    }
 
 
 }

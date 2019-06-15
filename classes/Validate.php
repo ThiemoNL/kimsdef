@@ -14,7 +14,7 @@ class Validate {
             foreach ($rules as $rule => $rule_value){
 //                echo "{$item} {$rule} must be {$rule_value}<br>";
                 $value = trim($source[$item]);
-                $item = htmlentities($item);
+                $item = escape($item);
 
 
                 if($rule === 'required' && empty($value)) {
