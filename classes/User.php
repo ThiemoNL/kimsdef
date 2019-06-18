@@ -58,6 +58,17 @@ class User {
         return false;
     }
 
+    public function hasPermission($key){
+        $group = $this->_db->get('groups', ['id', '=', $this->data()->group]);
+        if($group->count()){
+            $permissions = json_decode($group->first()->permissions, true);
+            if($permissions[$key] == true){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public function login($username = null, $password = null, $remember = false){
 
         if(!$username && !$password && $this->exists()){
