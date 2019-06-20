@@ -51,6 +51,8 @@ require_once 'core/init.php';
                     'email' => Input::get('email')
                 ]);
 
+
+
                 Session::flash('home', 'You have been registered and can now log in!');
                 Redirect::to('index.php');
             } catch (Exception $e){
