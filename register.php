@@ -1,5 +1,9 @@
 <?php
 require_once 'core/init.php';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'vendor/autoload.php';
 
 
 
@@ -38,7 +42,7 @@ require_once 'core/init.php';
 
         if ($validation->passed()) {
             $user = new User();
-
+            $mail = new PHPMailer(true);
 
             try {
 
@@ -51,11 +55,36 @@ require_once 'core/init.php';
                     'email' => Input::get('email')
                 ]);
 
+                $mail->SMTPDebug = 2;                                       // Enable verbose debug output
+                $mail->isSMTP();                                            // Set mailer to use SMTP
+                $mail->Host       = 'mail.creativestorm.nl';  // Specify main and backup SMTP servers
+                $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+                $mail->Username   = 'tim@creativestorm.nl';                     // SMTP username
+                $mail->Password   = 'sch00ltas123';                               // SMTP password
+                $mail->SMTPSecure = 'ssl';                                  // Enable TLS encryption, `ssl` also accepted
+                $mail->Port       = 465;                                    // TCP port to connect to
+
+                //Recipients
+                $mail->setFrom(Input::get('email'), 'Tim Oskam');
+                $mail->addAddress('tim_oskam@outlook.com', 'Tim Oskam');     // Add a recipient
+
+                // Attachments
+
+                $mailadress = Input::get('email');
+
+                // Content
+                $mail->isHTML(true);                                  // Set email format to HTML
+                $mail->Subject = 'Here is the subject';
+                $mail->Body    = "Uw mail adress is: " . $mailadress;
+                $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
 
+
+                $mail->send();
                 Session::flash('home', 'You have been registered and can now log in!');
                 Redirect::to('index.php');
             } catch (Exception $e){
+                echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
                 die($e->getMessage());
             }
         } else {
@@ -67,7 +96,16 @@ require_once 'core/init.php';
     }
 
 ?>
-
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
 <form action="" method="post">
     <div class="field">
         <label for="username">Username</label>
@@ -96,6 +134,10 @@ require_once 'core/init.php';
 
     <input type="hidden" name="token" value="<?php echo Token::generate() ?>">
 
+    <input type="hidden" name="token1" id="token1">
+
     <input type="submit" value="Register">
-    
+
 </form>
+</body>
+</html>
