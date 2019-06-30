@@ -37,7 +37,8 @@ if($user->isLoggedIn()){
             }else {
                 DB::getInstance()->update('users', Input::get('id'), [
                     'username' => Input::get('username'),
-                    'email' => Input::get('email')
+                    'email' => Input::get('email'),
+                    'groups' => Input::get('group')
                 ]);
                 echo 'geen password';
                 Session::flash('home', Input::get('username') . " Data has been updated");
@@ -73,7 +74,7 @@ if($user->isLoggedIn()){
                 </div>
                 <div class="field">
                     <label for="group">Group</label>
-                    <input type="number" name="group" value="<?= $user1->group ?>">
+                    <input type="number" name="group" value="<?= $user1->groups ?>">
                 </div>
                 <input type="submit" name="delete" value="delete">
                 <input type="submit" name="change" value="change details">
