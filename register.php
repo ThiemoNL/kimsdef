@@ -51,11 +51,11 @@ require 'vendor/autoload.php';
                     'password' => Hash::make(Input::get('password')),
                     'name' => Input::get('name'),
                     'joined' => date('Y-m-d H:i:s'),
-                    'group' => 1,
+                    'groups' => 1,
                     'email' => Input::get('email')
                 ]);
 
-                $mail->SMTPDebug = 2;                                       // Enable verbose debug output
+                $mail->SMTPDebug = 1;                                       // Enable verbose debug output
                 $mail->isSMTP();                                            // Set mailer to use SMTP
                 $mail->Host       = 'mail.creativestorm.nl';  // Specify main and backup SMTP servers
                 $mail->SMTPAuth   = true;                                   // Enable SMTP authentication

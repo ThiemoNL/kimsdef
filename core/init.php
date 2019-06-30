@@ -3,10 +3,10 @@ session_start();
 
 $GLOBALS['config'] = [
     'mysql' => [
-        'host' => '127.0.0.1',
-        'username' => 'root',
-        'password' => '',
-        'db' => 'kimslogin'
+        'host' => 'localhost',
+        'username' => 'creati2q_timoskam',
+        'password' => 'sch00ltas123',
+        'db' => 'creati2q_kimssite'
     ],
     'remember' => [
         'cookie_name' => 'hash',
